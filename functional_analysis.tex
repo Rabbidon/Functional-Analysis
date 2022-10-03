@@ -1,0 +1,121 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+	
+	\title{Problem Set Template}
+	\author{Your name\\
+		Course number: Course name}
+	\maketitle
+	
+	\begin{problem}{1.1}
+		True or false? The set $V=(0,\infty)$ (positive reals) is a vector space
+		with addition and scalar multiplication given by $x+y = xy$ and $\alpha\cdot x = x^\alpha$ for
+		all $x,y\in(0,\infty),\alpha\in\mathbb{R}$
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		This is a vector space - we can go through all 8 of the definitional statements of a vector space and see that they hold:
+		\begin{itemize}
+			\item $\forall x_1,x_2,x_3\in V,(x_1+x_2)+x_3 = x_1x_2x_3 = x_1+(x_2+x_3)$
+			\item $1\in V$ is our additive identity
+			\item The additive inverse of $x \in V$ is $1/x$
+			\item $\forall x_1,x_2 \in V, x_1+x_2 = x_2+x_1$ since basic multiplication is commutative
+			\item $\forall x\in V,1\cdot x=x^1=x$
+			\item $\forall \alpha,\beta\in \mathbb{R},x\in V,(\alpha\beta)\cdot x = x^{\alpha\beta} = (x^\beta)^\alpha = \alpha\cdot(\beta\cdot x)$
+			\item $\forall \alpha,\beta\in\mathbb{R},x\in V,(\alpha+\beta)\cdot x=x^{\alpha+\beta}=x^\alpha x^\beta = (\alpha\cdot x)+(\beta\cdot x)$
+			\item $\forall x,y\in V, \alpha\in \mathbb{R},\alpha\cdot(x+y)=(xy)^\alpha=x^\alpha y^\alpha = \alpha\cdot x + \alpha\cdot y$
+		\end{itemize}
+	\end{proof}
+
+	\begin{problem}{1.2}
+		Show that $C[0,1]$, 1s with the usual
+		pointwise operations is not a ﬁnite dimensional vector space.
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		Suppose that $C[0,1]$ has finite dimension $d$. It is easy to concieve of a family of continuous functions $\{f_i|i\in(\mathbb{N}\cap[1,d+1])\}$ s.t. the support of $f_i$ is contained in $((i-1)(d+1),i(d+1))$ and that no function in this family is everywhere 0. These are clearly lineary independent members of $C[0,1]$, which is a contradiction since now we have $d+1$ linearly independent members of a vector space of dimension $d$.
+	\end{proof}
+
+	\begin{problem}{1.3}
+		Let $S := \{\textbf{x} = C^1[a,b] : \textbf{x}(a) = y_a, \textbf{x}(b)= y_b\}$, where $y_a,y_b\in\mathbb{R}$.
+		Prove that $S$ is a subspace of $C[a,b]$ iff $y_a=y_b=0$.
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		Suppose that $y_a\neq 0$. Let $f_1,f_2\in S$. Since $S$ is a subspace, $f_1+f_2\in S$. Then $(f_1+f_2)(a)=2y_a\neq y_a$, and so by definition of $S$, $f_1+f_2\notin S$, and thus we have a contradiction. A similar argument holds when $y_b\neq 0$.
+		\\\\
+		For the other direction we need to show that $S$ is a vector space if $y_a=y_b=0$. Most of the required properties are inherited directly from $C^1[a,b]$ - we only need to show additive and multiplicative closure, and that the additive identity lives in $S$. The additive identity in this case is the zero function which trivially lives in $S$. Note also that for any $f_1,f_2\in S,\alpha\in\mathbb{R}$, we have
+		\begin{itemize}
+			\item $(f_1+f_2)(a)=f_1(a)+f_2(a) = 0+0 = 0$
+			\item $(f_1+f_2)(b)=f_1(b)+f_2(b) = 0+0 = 0$
+			\item $(\alpha\cdot f_1)(a)=\alpha f_1(a)=\alpha\cdot 0=0$
+			\item $(\alpha\cdot f_1)(b)=\alpha f_1(b)=\alpha\cdot 0=0$
+		\end{itemize}
+		Therefore we have additive and multiplicative closure, and thus $S$ is a subspace of $C^1[a,b]$.
+	\end{proof}
+
+	\begin{problem}{1.4}
+		In $C[0,1]$ equipped with the $\|.\|_\infty$-norm, calculate the norms of $t$,
+	$-t$, $t^n$ and $\sin(2\pi nt)$, where $n\in\mathbb{N}$.
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		We have
+		\begin{itemize}
+			\item $\|t\|_\infty=\sup_{t\in(0,1)}|t|=1$
+			\item $\|-t\|_\infty=\sup_{t\in(0,1)}|-t|=1$
+			\item $\|t^n\|_\infty=\sup_{t\in(0,1)}|t^n|=1$
+			\item $\|t\|_\infty=\sup_{t\in(0,1)}|\sin(2\pi nt)|=1$
+		\end{itemize}
+
+	\end{proof}
+
+	\begin{problem}{1.5}
+		Let $(X,\|\cdot\|)$ be a normed space. Prove that $\forall x,y \in X,|\|x\|-\|y\||\leq\|x-y\|$
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		By definition of norm, we have that $\|x\|=\|(x-y)+y\|\leq\|x-y\|+\|y\|$, and so $\|x\|-\|y\|\leq\|x-y\|$.
+		By symmetry, we also have $\|y\|-\|x\|\leq\|y-x\|$.
+		$(y-x) = -1\cdot(x-y)$ and so by definition of norm, $\|y-x\|=|-1|\cdot\|x-y\|=\|x-y\|$ Therefore
+		\[max(\|x\|-\|y\|,\|y\|-\|x\|)=|\|x\|-\|y\||\leq\|x-y\|\]
+	\end{proof}
+
+	\begin{problem}{1.6}
+		If $x\in\mathbb{R}$, then let $\|x\|=|x|^2$. Is $\|.\|$ a norm on $\mathbb{R}$?
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		$\|.\|$ is not a norm. We have $\|2x\|=|(2x)^2|=4|x^2|=4\|x\|\neq |2|\|x\| (\text{for } x\neq 0)$.
+	\end{proof}
+
+	\begin{problem}{1.7}
+		Let $X$ be a normed space with norm $\|\cdot\|_X$ , and $Y$ be a subspace
+	of $X$. Prove that $Y$ is also a normed space with the norm $\|\cdot\|_Y$ deﬁned simply
+as the restriction of $\|\cdot\|_X$ to $Y$.
+	\end{problem}
+			$\|.\|$ is not a norm. We have $\|2x\|=|(2x)^2|=4|x^2|=4\|x\|\neq |2|\|x\| (\text{for } x\neq 0)$.
+	\begin{proof}[Solution]
+		Additive and multiplicative closure of $Y$ along with the norm properties of $\|\cdot\|_X$ has this drop out pretty trivially.
+	\end{proof}	
+
+	\begin{problem}{1.8}
+		Let $1<p<\inf$ and $q$ s.t. $\frac{1}{p}+\frac{1}{q}=1$.\\
+		Then if $x_1,...,x_d,y_1,...,y_d\in\mathbb{C}$, prove H\"older's inequality:
+		\[\sum_{n=1}^{d}|x_ny_n|\leq\left(\sum_{n=1}^{d}|x_n|^p\right)^\frac{1}{p}\left(\sum_{n=1}^{d}|y_n|^q\right)^\frac{1}{q}\]
+	\end{problem}
+	
+	\begin{proof}[Solution]
+		
+	\end{proof}
+	
+\end{document}
